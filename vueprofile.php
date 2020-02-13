@@ -153,6 +153,17 @@
                 }else {
                   $oral4Error = "Critère 4  doit être compris entre 0 et 1.";
                 }
+                $tab1 = [[intval($note1), 0.23], [$oral1, 0.77]];
+                $moyenneCritère1 = averageCoef2($tab1);
+
+                $tab2 = [[intval($note2), 0.89], [$oral2, 0.11]];
+                $moyenneCritère2 = averageCoef2($tab2);
+
+                $tab3 = [[intval($note3), 0.52], [$oral3, 0.48]];
+                $moyenneCritère3 = averageCoef2($tab3);
+
+                $tab4 = [[intval($note4), 0.34], [$oral4, 0.66]];
+                $moyenneCritère4 = averageCoef2($tab4);
               }
 
             ?>
@@ -172,17 +183,7 @@
                     </form>
                  </div>
                  <?php
-                      $tab1 = [[intval($note1), 0.23], [$oral1, 0.77]];
-                      $moyenneCritère1 = averageCoef2($tab1);
 
-                      $tab2 = [[intval($note2), 0.89], [$oral2, 0.11]];
-                      $moyenneCritère2 = averageCoef2($tab2);
-
-                      $tab3 = [[intval($note3), 0.52], [$oral3, 0.48]];
-                      $moyenneCritère3 = averageCoef2($tab3);
-
-                      $tab4 = [[intval($note4), 0.34], [$oral4, 0.66]];
-                      $moyenneCritère4 = averageCoef2($tab4);
                   ?>
                  <table class="table text-center">
                   <thead>
@@ -199,29 +200,93 @@
                       <th>Critères 1</th>
                       <td><?php echo intval($note1); ?></td>
                       <td><?php echo $oral1; ?></td>
-                      <td><?php echo $moyenneCritère1; ?></td>
-                      <td><?php echo acquis($moyenneCritère1); ?></td>
+                      <td>
+                        <?php
+                          if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            echo $moyenneCritère1;
+                          } else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            echo acquis($moyenneCritère1);
+                          }else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
                     </tr>
                     <tr>
                       <th>Critères 2</th>
                       <td><?php echo intval($note2); ?></td>
                       <td><?php echo $oral2; ?></td>
-                      <td><?php echo $moyenneCritère2; ?></td>
-                      <td><?php echo acquis($moyenneCritère2); ?></td>
+                      <td>
+                        <?php
+                          if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            echo $moyenneCritère2;
+                          } else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            echo acquis($moyenneCritère2);
+                          }else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
                     </tr>
                     <tr>
                       <th>Critères 3</th>
                       <td><?php echo intval($note3); ?></td>
                       <td><?php echo $oral3; ?></td>
-                      <td><?php echo $moyenneCritère3; ?></td>
-                      <td><?php echo acquis($moyenneCritère3); ?></td>
+                      <td>
+                        <?php
+                          if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            echo $moyenneCritère3;
+                          } else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            echo acquis($moyenneCritère3);
+                          }else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
                     </tr>
                     <tr>
                       <th>Critères 4</th>
                       <td><?php echo intval($note4); ?></td>
                       <td><?php echo $oral4; ?></td>
-                      <td><?php echo $moyenneCritère4; ?></td>
-                      <td><?php echo acquis($moyenneCritère4); ?></td>
+                      <td>
+                        <?php
+                          if($_SERVER["REQUEST_METHOD"] == "POST"){
+                            echo $moyenneCritère4;
+                          } else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            echo acquis($moyenneCritère4);
+                          }else {
+                            echo "-";
+                          }
+                        ?>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
