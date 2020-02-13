@@ -45,13 +45,7 @@
 
   }
 
-  function average(array $array)
-  {
-    $nbElements = count($array);
-    $sum = array_sum($array);
-    $moy = $sum / $nbElements;
-    return $moy;
-  }
+
 
   function averageCoef2(array $array)
   {
@@ -67,7 +61,7 @@
 
   function acquis($moyenne)
   {
-    if ($moyenne>0.5) {
+    if ($moyenne>=0.5) {
       $response = "Acquis";
     }else {
       $response = "Non acquis";
@@ -132,15 +126,14 @@
               if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (!isset($_POST["critere1"])) {
                   $oral1Error = "Critère 1  est requis";
-                } else if ($_POST['critere1'] < 0 || $_POST['critere1'] > 1) {
-                  $oral1 = "";
-                  $oral1Error = "Critère 1  doit être compris entre 0 et 1.";
-                } else {
+                } else if ($_POST['critere1'] == 0 || $_POST['critere1'] == 1)  {
                   $oral1 = $_POST['critere1'];
+                } else {
+                  $oral1Error = "Critère 1  doit être compris entre 0 et 1.";
                 }
                 if (!isset($_POST["critere2"])) {
                   $oral2Error = "Critère 2  est requis";
-                } else if ($_POST['critere2'] == 0 || $_POST['critere2'] == 1) {
+                } else if ($_POST['critere2'] == 0 || $_POST['critere2'] == 1)  {
                   $oral2 = $_POST['critere2'];
                 }else {
 
@@ -166,26 +159,19 @@
            <div class="col-md-12 mt-5">
              <div class="card">
                <div class="card-body">
-                 <?php
-                    if ($_SERVER["REQUEST_METHOD"] !== "POST" || ($_POST['critere1'] < 0 || $_POST['critere1'] > 1)) {
-                  ?>
                  <h5 class="card-title"><?php echo $fullName; ?></h5>
                  <p><?php echo $email; ?></p>
                  <div class="note">
                    <p><span class="error">* Champs requis</span></p>
                     <form action="" method="post">
-                      <p>Critère 1 oral : <input type="text" name="critere1" step="1" min="0" max="1"><span class="error"> * <?php echo $oral1Error;?></span></p>
-                      <p>Critère 2 oral : <input type="text" name="critere2" step="1" min="0" max="1"><span class="error"> * <?php echo $oral2Error;?></span></p>
-                      <p>Critère 3 oral : <input type="text" name="critere3" step="1" min="0" max="1"><span class="error"> * <?php echo $oral3Error;?></span></p>
-                      <p>Critère 4 oral : <input type="text" name="critere4" step="1" min="0" max="1"><span class="error"> * <?php echo $oral4Error;?></span></p>
+                      <p>Critère 1 oral : <input type="number" name="critere1" step="1" min="0" max="1"><span class="error"> * <?php echo $oral1Error;?></span></p>
+                      <p>Critère 2 oral : <input type="number" name="critere2" step="1" min="0" max="1"><span class="error"> * <?php echo $oral2Error;?></span></p>
+                      <p>Critère 3 oral : <input type="number" name="critere3" step="1" min="0" max="1"><span class="error"> * <?php echo $oral3Error;?></span></p>
+                      <p>Critère 4 oral : <input type="number" name="critere4" step="1" min="0" max="1"><span class="error"> * <?php echo $oral4Error;?></span></p>
                       <input class="btn btn-secondary" type="submit" name="submit" value="Envoie!" />
                     </form>
-                    <?php
-                      }
-                    ?>
                  </div>
                  <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST['critere1'] == 0 || $_POST['critere1'] == 1) ) {
                       $tab1 = [[intval($note1), 0.23], [$oral1, 0.77]];
                       $moyenneCritère1 = averageCoef2($tab1);
 
@@ -197,10 +183,6 @@
 
                       $tab4 = [[intval($note4), 0.34], [$oral4, 0.66]];
                       $moyenneCritère4 = averageCoef2($tab4);
-
-                      $tabAll = [$moyenneCritère1, $moyenneCritère2, $moyenneCritère3, $moyenneCritère4];
-                      $moyenneTotal = average($tabAll);
-
                   ?>
                  <table class="table text-center">
                   <thead>
@@ -241,16 +223,9 @@
                       <td><?php echo $moyenneCritère4; ?></td>
                       <td><?php echo acquis($moyenneCritère4); ?></td>
                     </tr>
-                    <tr>
-                      <th>Moyenne Total</th>
-                      <td></td>
-                      <td></td>
-                      <td ><?php echo $moyenneTotal; ?></td>
-                      <td></td>
-                    </tr>
                   </tbody>
                 </table>
-              <?php } ?>
+
                </div>
              </div>
            </div>
