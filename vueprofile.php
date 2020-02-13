@@ -165,6 +165,9 @@
            <div class="col-md-12 mt-5">
              <div class="card">
                <div class="card-body">
+                 <?php
+                    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+                  ?>
                  <h5 class="card-title"><?php echo $fullName; ?></h5>
                  <p><?php echo $email; ?></p>
                  <div class="note">
@@ -177,7 +180,7 @@
                       <input class="btn btn-secondary" type="submit" name="submit" value="Envoie!" />
                     </form>
                     <?php
-
+                      }
                     ?>
                  </div>
                  <?php
