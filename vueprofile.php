@@ -143,6 +143,7 @@
                 } else if ($_POST['critere2'] == 0 || $_POST['critere2'] == 1) {
                   $oral2 = $_POST['critere2'];
                 }else {
+
                   $oral2Error = "Critère 2  doit être compris entre 0 et 1.";
                 }
                 if (!isset($_POST["critere3"])) {
@@ -166,7 +167,7 @@
              <div class="card">
                <div class="card-body">
                  <?php
-                    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+                    if ($_SERVER["REQUEST_METHOD"] !== "POST" || ($_POST['critere1'] < 0 || $_POST['critere1'] > 1)) {
                   ?>
                  <h5 class="card-title"><?php echo $fullName; ?></h5>
                  <p><?php echo $email; ?></p>
@@ -184,7 +185,7 @@
                     ?>
                  </div>
                  <?php
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if ($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST['critere1'] == 0 || $_POST['critere1'] == 1) ) {
                       $tab1 = [[intval($note1), 0.23], [$oral1, 0.77]];
                       $moyenneCritère1 = averageCoef2($tab1);
 
