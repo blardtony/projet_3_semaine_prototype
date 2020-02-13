@@ -13,6 +13,7 @@
         $_SESSION['id'] = $userinfo['id'];
         $_SESSION['full_name'] = $userinfo['full_name'];
         $_SESSION['email'] = $userinfo['email'];
+        $_SESSION['photo'] = $userinfo['image'];
         header("Location: profil.php?id=".$_SESSION['id']);
       } else {
         $error = "Mauvais identifiant !";
@@ -58,16 +59,26 @@
        </div>
      </nav>
      <div class="container">
-       <form method="POST" action="">
-            <input type="text" name="identifiant" placeholder="Identifiant" />
-            <br /><br />
-            <input type="submit" name="formconnexion" value="Se connecter !" />
-         </form>
-         <?php
-           if(isset($error)) {
-              echo '<font color="red">'.$error."</font>";
-           }
-         ?>
+       <div class="row">
+         <div class="col-lg-5 mx-auto">
+           <div class="card card-signin my-5">
+             <div class="card-body">
+               <h5 class="card-title text-center">Connexion</h5>
+               <form class="form-signin" method="POST" action="">
+                  <div class="form-label-group">
+                    <input id="ids" type="text" name="identifiant" placeholder="Identifiant" class="form-control" />
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="formconnexion">Se connecter</button>
+                 </form>
+                 <?php
+                   if(isset($error)) {
+                      echo '<font color="red">'.$error."</font>";
+                   }
+                 ?>
+             </div>
+           </div>
+         </div>
+       </div>
      </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

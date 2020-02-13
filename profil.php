@@ -47,7 +47,17 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
        </div>
      </nav>
      <div class="container">
-       <h2>Profil de <?php echo $userinfo['full_name']; ?></h2>
+       <div class="card testimonial-card mb-3">
+          <div class="card-up aqua-gradient"></div>
+          <div class="avatar mx-auto white">
+            <img src="<?php echo $userinfo['image']; ?>" class="rounded-circle img-responsive" alt="woman avatar">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title font-weight-bold text-center"><?php echo $userinfo['full_name']; ?></h4>
+            <hr>
+            <p>Mon email : <?php echo $userinfo['email'] ?></p>
+          </div>
+      </div>
      </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
